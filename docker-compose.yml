@@ -1,0 +1,31 @@
+services:
+  v2ray:
+    build:
+      context: ./v2ray/dockerImage/
+      dockerfile: dockerFile
+      args:
+        TAG: v5.14.1   # v2fly/v2ray version
+        TARGETPLATFORM: linux/386
+    restart: always
+    volumes:
+      - ./v2ray/config/:/etc/v2ray/
+      - ./v2ray/logs:/var/log/v2ray/
+    ports:
+      - "127.0.0.1:1310:1310"
+      - "127.0.0.1:1310:1310/udp"
+      - "127.0.0.1:8080:8080"
+    entrypoint: ["/usr/bin/v2ray", "run", "-c", "/etc/v2ray/config.json"]
+  caddy:
+    image: caddy:2.7.6-alpine
+    restart: always
+    ports:
+      - "80:80"
+      - "80:80/udp"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./caddy/Caddyfile:/etc/caddy/Caddyfile
+      - ./caddy/web/:/usr/share/caddy
+      - ./caddy/data/:/data/caddy/
+      - ./caddy/config/:/config/caddy
+
