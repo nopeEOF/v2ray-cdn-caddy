@@ -4,7 +4,7 @@ services:
       context: ./v2ray/dockerImage/
       dockerfile: dockerFile
       args:
-        TAG: v5.14.1   # v2fly/v2ray version
+        TAG: v5.16.1   # v2fly/v2ray version
         TARGETPLATFORM: linux/386
     restart: always
     volumes:

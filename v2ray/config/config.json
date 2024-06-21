@@ -20,7 +20,7 @@
         "network": "ws",
         "_security": "tls",
         "wsSettings": {
-          "path": "/ws"
+          "path": "/BIMN98poQAZ"
         }
       },
       "mux": {
